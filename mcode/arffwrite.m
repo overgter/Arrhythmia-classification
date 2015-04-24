@@ -41,7 +41,7 @@ format = [];
 for i=1:nAttribute-1
    format = [format ' %6.4f'];
 end
-format = [format ' %6.4f\n'];
+format = [format ' %c\n'];
 %-------------------------------
 fid = fopen(fileName,'w');          % open the file if exists otherwise create new
 %-------------------------------
@@ -49,6 +49,7 @@ fid = fopen(fileName,'w');          % open the file if exists otherwise create n
 % Writing headings in the arff file format.
 fprintf(fid,'%s %s\n','@relation',dataName);
 for i=1:nAttribute
+    
     A=attributeName{:,i};
     B=attributeType{:,i};
     fprintf(fid,'%s %s %s\n' ,'@attribute' ,A,B );

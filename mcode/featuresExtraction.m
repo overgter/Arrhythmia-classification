@@ -10,12 +10,13 @@ ecgf = wden(ecg(:,1),'heursure','s','one',2,'db4');
 %mat2wfdb(ecgf,'100s'); -->cambiar nombre
 
 %Genera anotaciones picos, inicio y fin de P,QRS,T
-ecgpuwave(signal,'test',[],[],'wqrs');
-pwaves=rdann(signal,'test',[],[],[],'p');
-twaves=rdann(signal,'test',[],[],[],'t');
-nwaves=rdann(signal,'test',[],[],[],'N');
-[onwaves,type,subtype,chan,numon,comments]=rdann(signal,'test',[],[],[],'(');
-[offwaves,type,subtype,chan,numoff,comments]=rdann(signal,'test',[],[],[],')');
+%ecgpuwave(signal,'test',[],[],'wqrs');
+[pwaves,ptype,psubtype,pchan,pnum,pcomments]=rdann(signal,'test',[],[],[],'p');
+[twaves,ttype,tsubtype,tchan,tnum,tcomments]=rdann(signal,'test',[],[],[],'t');
+[nwaves,ntype,nsubtype,nchan,nnum,ncomments]=rdann(signal,'test',[],[],[],'N');
+[onwaves,ontype,onsubtype,onchan,numon,oncomments]=rdann(signal,'test',[],[],[],'(');
+[offwaves,offtype,offsubtype,offchan,numoff,oncomments]=rdann(signal,'test',[],[],[],')');
+[allwaves,alltype,allsubtype,allchan,allnum,allcomments]=rdann(signal,'test',[],[],[]);
 %Grafica
 %plot(tm,ecg(:,1));hold on;grid on
 %plot(tm(twaves),ecg(twaves),'xg','MarkerSize',10)
@@ -119,6 +120,27 @@ while i < nOffset
     end
     i=i+1;
 end
+
+%Calcula onset de T,P y QRS
+onsetT =  [];
+onsetP =  [];
+onsetQRS =  [];
+for i = 1: nOnset
+    if (numon(i)==0)
+        onsetP=[onsetP onwaves(i)];
+    end
+    if (numon(i)==1)
+        onsetQRS=[onsetQRS onwaves(i)];
+    end
+    if (numon(i)==2)
+        onsetT=[onsetT onwaves(i)];
+    end    
+end
+
+onsetT = onsetT'
+onsetP = onsetP'
+onsetQRS = onsetQRS'
+
 % aca bandera si esta p 
 flagP = zeros(nRpeaks,1);
 count = nRpeaks+1;
