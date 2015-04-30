@@ -169,8 +169,10 @@ for m=1:M
         bit_res,gain{m},baseline{m},isint);
     
     y(:,m)=tmp_bit1;
+  
+    
     head_str(m+1)={[fname '.dat ' num2str(bit_res) ' ' num2str(bit_gain) '(' ...
-        num2str(baseline_tmp) ')/' adu{m} ' ' '0 0 0 ' num2str(ck_sum) ' 0 ' sg_name{m}]};
+        num2str(baseline_tmp) ') /' adu{1} ' ' '0 0 0 ' num2str(ck_sum) ' 0 ' sg_name{m}]};
 end
 if(length(y)<1)
     error(['Converted data is empty. Exiting without saving file...'])
@@ -232,7 +234,7 @@ if(isempty(baseline))
 end
 x=x-baseline;
 
-if(isempty(gain))
+if(~isempty(gain))
     %ADC gain (ADC units per physical unit). This value is a floating-point number
     %that specifies the difference in sample values that would be observed if a step
     %of one physical unit occurred in the original analog signal. For ECGs, the gain
@@ -244,7 +246,7 @@ if(isempty(gain))
     %Dynamic range of encoding / Dynamic Range of Data --but leave 1 quant level for NaN
     adc_gain=(2^(bit_res-1)-1)/(rg/2);
     y=x.*adc_gain;
-    
+   
     if(isint)
         %Use this option if you know the signal is quantitized, and you
         %want to remove round-off error by setting the original values to
@@ -253,7 +255,7 @@ if(isempty(gain))
         y=y/df_db;
         adc_gain=adc_gain/df_db;
     end
-    
+     
 else
     %if gain is alreay passed don't do anything to the signal
     %the gain will be used in the header file only
@@ -299,8 +301,6 @@ end
 %value corresponding to 0 physical units.
 baseline=baseline.*adc_gain;
 baseline=-round(baseline);
-
-
 
 
 function y=get_names(str,deli)
