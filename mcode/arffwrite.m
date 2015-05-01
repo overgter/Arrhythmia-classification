@@ -27,11 +27,11 @@ end
 if nargin > 5,
 	error('Too many input arguments!');
 end	
-attributeName
-attributeType
+attributeName;
+attributeType;
 nAttribute = size(data,2);
-nVar = size(attributeName,2)
-nVarType= size(attributeType,2)
+nVar = size(attributeName,1)
+nVarType= size(attributeType,1)
 nAttribute
 if nAttribute ~= nVar | nAttribute ~=nVarType
 	error('dimensions (column) of data must agree with number of varible name or type!');
@@ -50,8 +50,8 @@ fid = fopen(fileName,'w');          % open the file if exists otherwise create n
 fprintf(fid,'%s %s\n','@relation',dataName);
 for i=1:nAttribute
     
-    A=attributeName{:,i};
-    B=attributeType{:,i};
+    A=attributeName{i};
+    B=attributeType{i};
     fprintf(fid,'%s %s %s\n' ,'@attribute' ,A,B );
 end
 fprintf(fid,'%s\n','@data');
