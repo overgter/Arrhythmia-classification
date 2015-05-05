@@ -27,13 +27,15 @@ end
 if nargin > 5,
 	error('Too many input arguments!');
 end	
-attributeName;
-attributeType;
+
 nAttribute = size(data,2);
 nVar = size(attributeName,1);
 nVarType= size(attributeType,1);
-nAttribute;
 if nAttribute ~= nVar | nAttribute ~=nVarType
+    nAttribute
+    nVar
+    nAttribute
+    nVarType
 	error('dimensions (column) of data must agree with number of varible name or type!');
 end
 % first check for heading

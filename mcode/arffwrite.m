@@ -27,12 +27,10 @@ end
 if nargin > 5,
 	error('Too many input arguments!');
 end	
-attributeName;
-attributeType;
+
 nAttribute = size(data,2);
-nVar = size(attributeName,1)
-nVarType= size(attributeType,1)
-nAttribute
+nVar = size(attributeName,1);
+nVarType= size(attributeType,1);
 if nAttribute ~= nVar | nAttribute ~=nVarType
 	error('dimensions (column) of data must agree with number of varible name or type!');
 end
@@ -43,7 +41,7 @@ for i=1:nAttribute-1
 end
 format = [format ' %c\n'];
 %-------------------------------
-fid = fopen(fileName,'w');          % open the file if exists otherwise create new
+fid = fopen(fileName,'a+');          % open the file if exists otherwise create new
 %-------------------------------
 
 % Writing headings in the arff file format.
