@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/ECGMonitor/bin/dexedLibs/android-support-v4-80d6e3a46826847dc8e5f66d0326f9a7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ECGMonitor/bin/dexedLibs/achartengine-1.0.0-1f413b076908ae091fc96c2749c8df63.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

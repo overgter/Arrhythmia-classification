@@ -41,9 +41,9 @@ end
 % first check for heading
 format = [];
 for i=1:nAttribute-1
-   format = [format ' %6.4f'];
+   format = [format ' %6.4f,'];
 end
-format = [format ' %c\n'];
+format = [format '%c\n'];
 %-------------------------------
 fid = fopen(fileName,'a+');          % open the file if exists otherwise create new
 %-------------------------------

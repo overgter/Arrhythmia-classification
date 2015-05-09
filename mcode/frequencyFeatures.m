@@ -2,7 +2,7 @@
 function [beats Fft35 Magnitude Phase RRInterval RPCentered]=frequencyFeatures(signal)
   %pkg load signal;
   %Leemos la señal
-  [ecg,HDR]=sload([signal '.dat']);
+  [tm,ecg]=rdsamp(signal);
   
   %Leemos los picos R en donde se encuentran las anotaciones
   

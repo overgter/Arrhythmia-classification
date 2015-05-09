@@ -26,7 +26,7 @@ for i=1:f
    [beats Fft35 Magnitude Phase]=frequencyFeatures(signal);
    
    for j=1:size(Magnitude,1)
-       arffrewrite('weka.arff','arrhythmia',m,num,[Magnitude{j} beats{j,2}]);        
+       arffrewrite('wekaP.arff','arrhythmia',m,num,[Magnitude{j} beats{j,2}]);        
    end
 end
     
